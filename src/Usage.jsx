@@ -2,7 +2,7 @@ import React from "react";
 function Usage(){
  return (
      <>
-     <div className="lg:space-x-12">
+     <div className="text-center mx-auto lg:text-left lg:space-x-12">
      <a href="https://google.com" id="Battery">
         <img className="py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/PT7CqD4/Battery.png" width="85px" height="85px" alt="Battery"/>
     </a>
@@ -15,7 +15,7 @@ function Usage(){
     
     </div>
     <br/>
-    <div className="lg:space-x-12">
+    <div className="text-center mx-auto lg:text-left lg:space-x-12">
     <a href="https://google.com" id="Gaming">
         <img className="py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/YDDt3Wd/Gaming.png" width="85px" height="85px" alt="Gaming"/>
     </a>

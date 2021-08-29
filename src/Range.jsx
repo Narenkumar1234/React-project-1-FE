@@ -56,10 +56,10 @@ export default function Range() {
     <div className="inline-block">
       <h1 className="text-black">₹ {value[0]}</h1>
     </div>
-    <div className="lg:pt-10 pl-32 lg:pl-74 lg:ml-36 inline-block">
+    <div className="lg:pt-10 lg:pl-74 lg:ml-36 md:ml-28 pl-32   inline-block">
       <h1 className="text-black">₹ {value[1]}</h1>
     </div>
-    <div className=" lg:w-96">
+    <div className="md:mx-auto md:text-center md:w-80 lg:w-96">
       <PrettoSlider 
       max={25000}
       min={8000}
@@ -68,7 +68,7 @@ export default function Range() {
       value={value}
       onChange={getValue}/>
     <div className="text-center">
-    <button className="ml-4 lg:ml-0 my-5 transition duration-500 bg-transparent hover:bg-green text-green font-semibold hover:text-white py-2 px-4 border border-green hover:border-transparent rounded inline-block">Search</button>
+    <button className="text-center lg:text-left lg:ml-0 my-5 transition duration-500 bg-transparent hover:bg-green text-green font-semibold hover:text-white py-2 px-4 border border-green hover:border-transparent rounded inline-block">Search</button>
     </div>
       <div className={classes.margin} />
     </div>

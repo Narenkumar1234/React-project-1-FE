@@ -4,8 +4,8 @@ import "./index.css"
 function Brand(){
 return (
 <>
-<div className="px-12 lg:px-32 py-10 filter drop-shadow-lg ">
-<div><h1 className="py-1 px-1.5 lg:px-0 mx-auto text-center lg:text-left font-semibold pb-5">Search By Brand</h1></div>  
+<div className="px-12 text-center lg:px-32 py-10 filter drop-shadow-lg ">
+<div><h1 className="py-1 lg:px-0 mx-auto text-center lg:text-left font-semibold pb-5">Search By Brand</h1></div>  
         <div className="lg:space-x-14">
             <div className="inline-block lg:transform lg:h-30  transition duration-500 lg:hover:scale-125">
             <a className="transform h-64  transition duration-500 hover:scale-125 " href="https://google.com" id="xaomi">
