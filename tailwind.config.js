@@ -6,7 +6,8 @@ module.exports = {
     colors: {
       gradientwhite:'#D1FAE5',
       green:'#059669',
-      white: '#F9FAFB'
+      white: '#F9FAFB',
+      blue: "#6D28D9"
     }
   },
   variants: {

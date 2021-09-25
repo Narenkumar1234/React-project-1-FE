@@ -27,7 +27,7 @@ function Upcoming(){
     <img className="mt-5 mx-auto w-7/12 md:w-5/12 lg:w-10/12" src="https://i.ibb.co/bNcV8F4/Upcoming2.png" alt="upcoming5" />
     <p className="my-3" id="upcoming2">OPPO Reno6 4G</p>
     </div>
-    <div className="shadow-xl  bg-white my-1 mx-auto lg:mx-0 text-center h-52 w-10/12 lg:h-72 lg:w-11/12 rounded-2xl">
+    <div className="shadow-xl bg-white my-1 mx-auto lg:mx-0 text-center h-52 w-10/12 lg:h-72 lg:w-11/12 rounded-2xl">
     <img className="mt-5 mx-auto w-7/12 md:w-5/12 lg:w-10/12" src="https://i.ibb.co/j87qKKy/Upcoming1.png" alt="upcoming6" />
     <p className="my-3" id="upcoming1">OPPO Reno6 4G</p>   
     </div>
