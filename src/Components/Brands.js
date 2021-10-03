@@ -9,7 +9,7 @@ return (
 <div><h1 className="py-1 lg:px-0 mx-auto text-center lg:text-left font-semibold pb-5">Search By Brand</h1></div>  
         <div className="lg:text-left lg:space-x-14 lg:flex lg:flex-nowrap">
             <div className="inline-block lg:transform lg:h-30  transition duration-500 lg:hover:scale-125">
-            <Link className="transform h-64  transition duration-500 hover:scale-125" to="/getSamsung"  >
+            <Link className="transform h-64  transition duration-500 hover:scale-125" to="/getMobilePhone"  >
             <img className=" py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/j6RQ0Kq/samsung.png" width="85px" height="85px" alt="xoami"/>
             </Link>
             </div>

@@ -11,7 +11,7 @@ function Navbar(){
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
     <>
-      <nav className="lg:px-20 bg-white shadow-md ">
+      <nav className="lg:px-20 bg-white shadow-md">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
            <div className="flex"><a className="text-2xl lg:text-4xl py-2 px-2 text-green font-semibold transition duration-300" href="#pablo">Smartz</a></div>

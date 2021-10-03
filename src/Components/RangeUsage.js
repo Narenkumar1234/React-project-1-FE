@@ -14,7 +14,7 @@ function RangeUsage(){
     </div>
     </div> 
     <div>
-    <h1 className=" py-1 px-1.5  text-center md:px-0 lg:px-0 lg:text-left font-semibold pb-5">Search By Usage</h1>
+    <h1 className="py-1 px-1.5  text-center md:px-0 lg:px-0 lg:text-left font-semibold pb-5">Search By Usage</h1>
     <Usage />
     </div> 
     </div>

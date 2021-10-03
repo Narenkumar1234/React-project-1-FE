@@ -5,3 +5,13 @@
 body{
     font-family: 'Lexend Deca', sans-serif;
 }
+.checkbox-div{
+    zoom: 1.2;
+    text-align: left;
+}
+.fixed-block{
+    display:block;
+    position:fixed;
+    width:100px;
+    height:100px;
+}
