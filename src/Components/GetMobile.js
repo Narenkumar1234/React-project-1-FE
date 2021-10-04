@@ -1,6 +1,5 @@
 import React from "react";
 import {useEffect, useState} from 'react';
-import InfiniteScroll from 'react-infinite-scroller'
 
 const makeLink = (str,name,store) =>{
   if(str==="null"){
@@ -17,46 +16,41 @@ const makeLink = (str,name,store) =>{
 }
 
 
-const GetMobile = ( {name} ) => {
-  var [mobile,setMobile] = useState([]);
- 
-
-useEffect(()=> {
-  getMobile();  
-},[name])
+const GetMobile = ( {name}  ) => {
+  
+  const [mobile,setMobile] = useState([]);
+  const [loading,setLoading] = useState(false);
 
 const getMobile = async () => {
   try{
     const response = await fetch("http://localhost:5000/"+name)
     const jsonData = await response.json();
     setMobile(jsonData);
+    setLoading(true); 
   }
+ 
   catch (err){
     console.log(err.message);
   }
-
 }
+
+
+useEffect(()=> {
+
+  getMobile();  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+},[name])
+
 
 return (
 <>
 <br/>
 <br/>
-<InfiniteScroll
-    pageStart={0}
-    loadMore={getMobile}
-    hasMore={true}
-    loader={<div className="loader" key={0}>Loading ...</div>}
->
-     
+{ loading ? (
+  mobile.map(mobile=>(
 
-{mobile.map(mobile=>(
 <div key={mobile.id} className=" lg:px-24 lg:py-7 ">
-{/* divide page */}
-
-      {/* filters  */}     
-
-      {/*name  & price  row */}
-
+      
       <div  className="rounded-lg border-t-2  border-blue grid grid-rows-6 shadow-md  mx-1 ">
         <div className="row-span-1 grid grid-cols-5 ">
         <h1 id="MName" className="text-center  lg:px-3 lg:py-3 font-semibold col-span-1 text-sm">{mobile.mobilename}</h1>
@@ -96,14 +90,12 @@ return (
           <a href={makeLink(mobile.amazonlink,mobile.mobilename,"amazon")} ><h1 className="lg:px-5 lg:py-2 font-bold inline-block text-xl"><img className="w-10 inline-block"  src="https://i.ibb.co/VjKn8y7/amazon.png"  alt="amazon" />amazon</h1></a>
           </div>
         </div>
-        
       </div>
 
 </div>  
 
-))}
-</InfiniteScroll>
-{/* shadow  */}
+))
+):( <div className="animate-pulse text-center text-2xl text-bold text-green" key={0}>Loading...</div>) }
     </>
     
   );
