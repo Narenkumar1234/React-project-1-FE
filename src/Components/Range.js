@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import {useState} from 'react';
-
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,12 +45,19 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
+
+
 export default function Range() {
   const classes = useStyles();
   const [value,setValue]= useState([10000,20000])
+
+
+  
+  
   const getValue=(e,val)=>(
     setValue(val) 
-    )
+  )
+
   return (
     <>
     <div className="inline-block">
@@ -68,8 +75,14 @@ export default function Range() {
       value={value}
       onChange={getValue}/>
     <div className="text-center">
-    <button className="text-center lg:text-left lg:ml-0 my-5 transition duration-500 bg-transparent hover:bg-green text-green font-semibold hover:text-white py-2 px-4 border border-green hover:border-transparent rounded inline-block">Search</button>
+     
+    <Link  to={`/getMobilePhone/${value[0]}/${value[1]}`}>
+    <button
+    className="text-center lg:text-left lg:ml-0 my-5 transition duration-500 bg-transparent hover:bg-green text-green 
+    font-semibold hover:text-white py-2 px-4 border border-green hover:border-transparent rounded inline-block">Search</button>
+    </Link>
     </div>
+
       <div className={classes.margin} />
     </div>
     </>

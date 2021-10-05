@@ -16,14 +16,22 @@ const makeLink = (str,name,store) =>{
 }
 
 
-const GetMobile = ( {name}  ) => {
-  
+const GetMobile = ( props ) => {
   const [mobile,setMobile] = useState([]);
   const [loading,setLoading] = useState(false);
+  var response;
 
 const getMobile = async () => {
   try{
-    const response = await fetch("http://localhost:5000/"+name)
+    if(typeof props.cost === 'undefined'){
+      response = await fetch("http://localhost:5000/"+props.name);
+    }
+    else if(isNaN(props.name)){
+     response = await fetch("http://localhost:5000/"+props.name+"/"+props.cost);
+    }
+    else{
+      response = await fetch("http://localhost:5000/"+parseInt(props.name)+"/"+parseInt(props.cost));
+    }
     const jsonData = await response.json();
     setMobile(jsonData);
     setLoading(true); 
@@ -36,10 +44,9 @@ const getMobile = async () => {
 
 
 useEffect(()=> {
-
   getMobile();  
   // eslint-disable-next-line react-hooks/exhaustive-deps
-},[name])
+},[props.name,props.cost])
 
 
 return (
@@ -59,12 +66,13 @@ return (
 
       {/* image performance display camera battery  */}
 
-        <div className="row-span-4 grid grid-cols-5 space-x-3 px-2 text-center mx-auto">
-        <img id="MImage" className="text-center mx-auto w-10/12 " src={mobile.imagesrc}  alt="xoami mobile"/>
+      <div className="row-span-4 grid grid-cols-5 space-x-3 px-2 text-center mx-auto">
+        <img id="MImage" className="text-center mx-auto w-10/12 " src={mobile.imagesrc}  alt="xoami mobile"/>  
         
         <div id="performance">
           <h1 className="mt-10 font-bold p-3 text-center  h-48 box-border shadow-lg"><img className="inline" src="https://i.ibb.co/3skXMcx/performance-svg.png  " alt="performance-svg" border="0" /> Performance <hr/> <span className="font-normal pt-0">{mobile.performance}</span> </h1>
         </div>
+        
         <div id="display">
           <h1 className="mt-10 font-bold p-3 text-center border-3 h-48 box-border shadow-lg"><img className="inline" src="https://i.ibb.co/7Yqqysx/display-svg.png" alt="display-svg" border="0" /> Display <hr /> <span className="font-normal pt-0">{mobile.display}</span> </h1>
         </div>
@@ -75,7 +83,6 @@ return (
         </div>
         
         <div id="battery">
-        
           <h1 className="mt-10 font-bold p-3 text-center border-3 h-48 box-border shadow-lg"> <img className="inline" src="https://i.ibb.co/64wzrpV/battery-svg.png" alt="battery-svg" border="0" /> Battery <hr /> <span className="font-normal pt-0"> {mobile.battery} </span> </h1>
           <br />
         </div>
@@ -90,6 +97,7 @@ return (
           <a href={makeLink(mobile.amazonlink,mobile.mobilename,"amazon")} ><h1 className="lg:px-5 lg:py-2 font-bold inline-block text-xl"><img className="w-10 inline-block"  src="https://i.ibb.co/VjKn8y7/amazon.png"  alt="amazon" />amazon</h1></a>
           </div>
         </div>
+      
       </div>
 
 </div>  
