@@ -2,7 +2,6 @@ import React from "react";
 import "../index.css"
 import { Link  } from 'react-router-dom';
 
-
 function Brand(){
 return (
 <>
@@ -56,6 +55,7 @@ return (
     <Link className="transform h-64  transition duration-500 hover:scale-125" to="/getMobilePhone/poco">
     <img className="  py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/xJytR21/poco.png" width="85px" height="85px" alt="xoami"/>
     </Link>
+
     </div>
     <div className="inline-block lg:transform lg:h-30  transition duration-500 lg:hover:scale-125">
     <a href="https://google.com" id="moto">
@@ -64,9 +64,6 @@ return (
     </div>
     </div>
     </div>
-</>
-
-);
-}
+</>);}
 
 export default Brand;

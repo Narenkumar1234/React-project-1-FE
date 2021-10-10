@@ -20,7 +20,8 @@ module.exports = {
       xiaomi: '#F76400',
       realme: '#F5C310',
       oppo: '#008653',
-      oneplus: '#EB0513'
+      oneplus: '#EB0513',
+      compare:'#2874F0'
     }
  
   },

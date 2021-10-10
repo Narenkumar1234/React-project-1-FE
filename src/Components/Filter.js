@@ -8,8 +8,6 @@ function Filter () {
   // render component Getmobile
   const [Price,SetPrice] = useState(mobile.price);
   const [Mobile,SetMobile] = useState(mobile.id);
-  console.log(mobile.id);
-  console.log(mobile.price)
 
   // filter button update
   const [Vivo,AddVivo] = useState(false);
@@ -23,14 +21,9 @@ function Filter () {
   const [Below17,SetBelow17] = useState(false);
   const [Below20,SetBelow20] = useState(false);
 
-
-
   useEffect(()=>{
       <GetMobile name={Mobile} cost={Price} />
   },[Mobile,Price])
-
-  
-
 
 function clickPrice(cost){
   SetPrice(cost);
@@ -97,12 +90,8 @@ function clickMobile(name){
   }
   else{
     AddRealme(false);
-  }
-  
+ }
 }
-
-
-
 
 
 return(<>
@@ -115,7 +104,6 @@ return(<>
 
 
 <h1 className="text-left font-semibold text-lg mt-2">Price List</h1>
-
 <div className="text-center space-y-3 mt-4 mb-4">
 <button type="button" onClick={()=>clickPrice(13000)} className={"hover:bg-litegreen transition duration-500 ease-in-out font-semibold py-2 px-5 border border-gray rounded shadow" +(Below13 ? " bg-litegreen text-white" : "text-black")}>Below ₹ 13000</button><br/>
 <button type="button" onClick={()=>clickPrice(17000)} className={"hover:bg-litegreen transition duration-500 ease-in-out font-semibold py-2 px-5 border border-gray rounded shadow" +(Below17 ? " bg-litegreen text-white" : "text-black")}>Below ₹ 17000</button><br/>
@@ -123,19 +111,16 @@ return(<>
 </div>
 
 
-
 <h1 className="text-left font-semibold text-lg mt-10">Brand List</h1>
-
 <div className="text-left space-x-3 space-y-3 mt-3 mb-4"> 
-<button type="button" onClick={()=>clickMobile("Vivo")}  className={" ml-3 transition duration-500 ease-in-out  hover:bg-vivo hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-vivo rounded shadow" +(Vivo ? " bg-vivo text-white" : " text-vivo")}>v i v o </button>
-<button type="button" onClick={()=>clickMobile("Xiaomi")} className={" ml-3 transition duration-500 ease-in-out  hover:bg-xiaomi hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-xiaomi rounded shadow" +(Xiaomi ? " bg-xiaomi text-white" : " text-xiaomi")}>X i a o m i</button>
-<button type="button" onClick={()=>clickMobile("Oppo")} className={" ml-3 transition duration-500 ease-in-out  hover:bg-oppo hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-oppo rounded shadow" +(Oppo ? " bg-oppo text-white" : " text-oppo")}>o p p o</button>
-<button type="button" onClick={()=>clickMobile("Poco")} className={"ml-3 transition duration-500 ease-in-out  hover:bg-poco hover:text-black transform hover:-translate-y-1 hover:scale-110 font-semibold py-2 px-5 border border-poco rounded shadow" +(Poco ? " bg-poco text-black" : " text-poco")}>P o c o</button>
-<button type="button" onClick={()=>clickMobile("Oneplus")} className={"ml-3 transition duration-500 ease-in-out  hover:bg-oneplus hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-oneplus rounded shadow" +(Oneplus ? " bg-oneplus text-white" : " text-oneplus")}>o n e p l u s</button>
-<button type="button" onClick={()=>clickMobile("Realme")} className={"ml-3 transition duration-500 ease-in-out  hover:bg-realme hover:text-grey transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-realme rounded shadow" +(Realme ? " bg-realme text-grey" : " text-realme")}>R e a l m e</button>
-<button type="button" onClick={()=>clickMobile("Samsung")} className={"ml-3 transition duration-500 ease-in-out  hover:bg-samsung hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-samsung rounded shadow" +(Samsung ? " bg-samsung text-white" : " text-samsung")}>S a m s u n g</button>
+<button type="button" onClick={()=>clickMobile("Vivo")}  className={" ml-3 transition duration-500 ease-in-out hover:bg-vivo hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-vivo rounded shadow" +(Vivo ? " bg-vivo text-white" : " text-vivo")}>v i v o </button>
+<button type="button" onClick={()=>clickMobile("Xiaomi")} className={" ml-3 transition duration-500 ease-in-out hover:bg-xiaomi hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-xiaomi rounded shadow" +(Xiaomi ? " bg-xiaomi text-white" : " text-xiaomi")}>X i a o m i</button>
+<button type="button" onClick={()=>clickMobile("Oppo")} className={" ml-3 transition duration-500 ease-in-out hover:bg-oppo hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-oppo rounded shadow" +(Oppo ? " bg-oppo text-white" : " text-oppo")}>o p p o</button>
+<button type="button" onClick={()=>clickMobile("Poco")} className={"ml-3 transition duration-500 ease-in-out hover:bg-poco hover:text-black transform hover:-translate-y-1 hover:scale-110 font-semibold py-2 px-5 border border-poco rounded shadow" +(Poco ? " bg-poco text-black" : " text-poco")}>P o c o</button>
+<button type="button" onClick={()=>clickMobile("Oneplus")} className={"ml-3 transition duration-500 ease-in-out hover:bg-oneplus hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-oneplus rounded shadow" +(Oneplus ? " bg-oneplus text-white" : " text-oneplus")}>o n e p l u s</button>
+<button type="button" onClick={()=>clickMobile("Realme")} className={"ml-3 transition duration-500 ease-in-out hover:bg-realme hover:text-grey transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-realme rounded shadow" +(Realme ? " bg-realme text-grey" : " text-realme")}>R e a l m e</button>
+<button type="button" onClick={()=>clickMobile("Samsung")} className={"ml-3 transition duration-500 ease-in-out hover:bg-samsung hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-samsung rounded shadow" +(Samsung ? " bg-samsung text-white" : " text-samsung")}>S a m s u n g</button>
 </div>
-
 
 
 <h1 className="text-left font-semibold text-lg mt-10">Camera</h1>
@@ -155,19 +140,19 @@ return(<>
 
 
 <h1 className="text-left font-semibold text-lg mt-10">Display</h1>
-<div className="ml-8 checkbox-div mt-4">
-<label className="block">
-  <input type="checkbox"  value="samsung"/>
-  <span className="mx-1">above 4 inch</span>
-</label>
-<label className="block">
-  <input type="checkbox"  value="vivo"/>
-  <span className="mx-1">above 5 inch</span>
-</label>        
-<label className="block">
-  <input type="checkbox"  value="vivo"/>
-  <span className="mx-1">above 6 inch</span>
-</label>        
+ <div className="ml-8 checkbox-div mt-4">
+  <label className="block">
+    <input type="checkbox"  value="samsung"/>
+    <span className="mx-1">above 4 inch</span>
+  </label>
+  <label className="block">
+    <input type="checkbox"  value="vivo"/>
+    <span className="mx-1">above 5 inch</span>
+  </label>        
+  <label className="block">
+    <input type="checkbox"  value="vivo"/>
+    <span className="mx-1">above 6 inch</span>
+  </label>        
 </div>
 
 <h1 className="text-left font-semibold text-lg mt-10">Architecture</h1>
