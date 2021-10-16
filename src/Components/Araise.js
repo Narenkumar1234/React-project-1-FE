@@ -12,7 +12,7 @@ return (
  }
     position="right center"
     modal>
-     <div className="text-xl text-center text-white pt-2 rows-span-1 bg-green h-10 ">
+     <div className="rounded-lg text-xl text-center text-white pt-2 rows-span-1 bg-blue h-10 ">
      <h1>Compare</h1>
      </div>
      <div className="grid grid-cols-2 rows-span-4 text-center mx-auto"> 
@@ -32,7 +32,7 @@ return (
        
        ))
       
-       :(<div>Eh.. olunga vandhuru....</div>)}
+       :(<div>Cannot Load Compare!!!</div>)}
 
       </div> 
     </Popup>
