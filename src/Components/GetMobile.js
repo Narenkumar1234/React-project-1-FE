@@ -128,6 +128,7 @@ return (
   =&gt; Added ({Compare.length})</span></center>):(<div></div>)}
 {compare && compare!=='null' ? (<Araise list={Compare}/>):(<div></div>)}
 { loading ? (
+  // eslint-disable-next-line 
   mobile.filter((mobile) => {
       if(props.search === null || props.search === "undefined" || typeof props.search=== 'undefined'){
       return mobile;
