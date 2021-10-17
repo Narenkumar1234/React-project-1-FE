@@ -10,6 +10,8 @@ function Filter () {
   const [Battery,SetBattery] = useState(mobile.batt);
   const [Camera,SetCamera] = useState(mobile.cam);
   const [Display,SetDisplay] = useState(mobile.disp);
+  const [Sort,SetSort] = useState(mobile.sorting);
+  
   const Search = mobile.search;
 
   // filter button update
@@ -37,18 +39,45 @@ function Filter () {
   const [Inch55,SetInch55] = useState(false);
   const [Inch6,SetInch6] = useState(false);
 
+  const [Asc,SetAsc] = useState(false);
+  const [Dsc,SetDsc] = useState(false);
   
   const [Loading,SetLoading] = useState(false);
   const [LoadingBrand,SetLoadingBrand] = useState(false);
   const [LoadingBattery,SetLoadingBattery] =useState(false);
   const [LoadingCamera,SetLoadingCamera] =useState(false);
   const [LoadingDisplay,SetLoadingDisplay] =useState(false);
-
+  const [LoadingSort,SetLoadingSort] = useState(false);
   
   useEffect(()=>{
-      <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} search={Search} />
-  },[Mobile,Price,Battery,Camera,Display,Search])
+      <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} search={Search} sort={Sort}/>
+  },[Mobile,Price,Battery,Camera,Display,Search,Sort])
  
+  //Sort
+  function clickSort(order){
+    SetSort(order);
+    if(order==="ASC"){
+      SetAsc(true);
+      SetLoadingSort(true);
+      setTimeout(() => {
+        SetLoadingSort(false);
+      }, 3000)
+    }
+    else{
+      SetAsc(false);  
+    }
+    if(order==="DESC"){
+      SetDsc(true);
+      SetLoadingSort(true);
+      setTimeout(() => {
+        SetLoadingSort(false);
+      }, 3000)
+    }
+    else{
+      SetDsc(false);
+    }
+  }
+  
   //Display 
   function clickDisplay(disp){
     SetDisplay(disp);
@@ -118,17 +147,14 @@ function clickCamera(cam){
     }, 3000)
   }
   else{
-    SetAbove48MP(false)
-    
+    SetAbove48MP(false) 
   }
-
 }
-
-
 
 //battery
 function clickBattery(batt){
   SetBattery(batt);
+
   if(batt===2000){
     SetAbove2000(true);
     SetLoadingBattery(true);
@@ -138,8 +164,8 @@ function clickBattery(batt){
   }
   else{
     SetAbove2000(false);
-    
   }
+
   if(batt===3500){
     SetAbove3500(true);
     SetLoadingBattery(true);
@@ -150,6 +176,7 @@ function clickBattery(batt){
   else{
     SetAbove3500(false);
   }
+
   if(batt===5000){
     SetAbove5000(true);
     SetLoadingBattery(true);
@@ -158,8 +185,7 @@ function clickBattery(batt){
     }, 3000)
   }
   else{
-    SetAbove5000(false)
-    
+    SetAbove5000(false) 
   }
 }
 
@@ -279,7 +305,6 @@ function clickMobile(name){
 }
 
 
-
 return(<>
 <div className="lg:grid lg:grid-cols-12 overflow-hidden"> 
 <div className="mx-10 my-7 w-full p-2 h-full shadow-xl col-span-2 rounded-xl hidden lg:block">
@@ -318,9 +343,6 @@ return(<>
 <button type="button" onClick={()=>clickBattery(5000)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow"+(Above5000 ? " bg-litegreen text-white" : "text-black")}>Above 5000 mAH</button><br/>
 </div>
 
-
-
-
 <h1 className="text-left font-semibold text-lg mt-10 inline-block">Camera</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingCamera ? "": "hidden")}>loading</button>
 
@@ -330,8 +352,6 @@ return(<>
 <button type="button" onClick={()=>clickCamera(48)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow"+(Above48MP ? " bg-litegreen text-white" : "text-black")}>48MP and above</button><br/>
 </div>
 
-
-
 <h1 className="text-left font-semibold text-lg mt-10 inline-block">Screen</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingDisplay ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-3"> 
@@ -340,9 +360,16 @@ return(<>
 <button type="button" onClick={()=>clickDisplay(5.9)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Inch6 ? " bg-litegreen text-white" : "text-black")}>6 inch and above</button><br/>
 </div>
 
+<h1 className="text-left font-semibold text-lg mt-10 inline-block">Sort By</h1>
+<button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingSort ? "": "hidden")}>loading</button>
+<div className="text-center space-y-3 mt-3"> 
+<button type="button" onClick={()=>clickSort("ASC")} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Asc ? " bg-litegreen text-white" : "text-black")}>Price Low to High</button><br/>
+<button type="button" onClick={()=>clickSort("DESC")} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Dsc ? " bg-litegreen text-white" : "text-black")}>Price High to Low</button><br/>
+</div>
+
 </div>
 <div className="col-span-10">
- <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} search={Search}/>
+ <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} search={Search} sort={Sort}/>
 </div>
 </div>
 </>)

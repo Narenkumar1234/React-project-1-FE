@@ -22,39 +22,72 @@ const GetMobile = ( props ) => {
   const [loading,setLoading] = useState(false);
   const [compare,setCompare] = useState(false);
   var response;
-var Search;
+  var Search;
+  var name,price,battery,camera,display,a,b,c,d,e;
 const getMobile = async () => {
   try{
-    if(isNaN(props.name) && typeof props.batt==='undefined' && typeof props.cam=='undefined' && typeof props.cost==='undefined' && typeof props.disp==='undefined' && typeof props.search==='undefined'){
-      response = await fetch("http://localhost:5000/"+props.name+"/search");
-    }
-    else if(isNaN(props.name)){
-      var name    = isNaN(props.name)?props.name:"complete";
-      var price   = typeof props.cost   ==='undefined'  ? '90000':props.cost;
-      var battery = typeof props.batt   ==='undefined'  ? '1000':props.batt;
-      var camera  = typeof props.cam    ==='undefined'  ? '12':props.cam;     
-      var display = typeof props.disp   ==='undefined'  ? '1.0':props.disp;  
-      Search      = typeof props.search ==='undefined'  ? 'search': props.search;
-      setLoading(false);
+   if(typeof props.sort === 'undefined'){
+     if(isNaN(props.name) && typeof props.batt==='undefined' && typeof props.cam=='undefined' && typeof props.cost==='undefined' && typeof props.disp==='undefined' && typeof props.search==='undefined'){
+       response = await fetch("http://localhost:5000/"+props.name+"/search");
+      }
+      else if(isNaN(props.name)){
+        name    = isNaN(props.name)?props.name:"complete";
+        price   = typeof props.cost ==='undefined' ? '90000':props.cost;
+        battery = typeof props.batt ==='undefined' ? '1000':props.batt;
+        camera  = typeof props.cam  ==='undefined' ? '12':props.cam;     
+        display = typeof props.disp ==='undefined' ? '1.0':props.disp;  
+        Search      = typeof props.search ==='undefined' ? 'search': props.search;
+        setLoading(false);
         response = await fetch("http://localhost:5000/"+name+"/"+price+"/"+battery+"/"+camera+"/"+display+"/"+Search);
+      }
+      else if(!isNaN(props.name)){
+        setLoading(false);
+        if(typeof props.cam=='undefined' && typeof props.disp==='undefined' && typeof props.batt==='undefined' && typeof props.search==='undefined')
+        response = await fetch("http://localhost:5000/"+(props.name)+"/"+(props.cost)+"/search");
+        else {
+          setLoading(false);
+          a = isNaN(props.name)?props.name:"complete";
+          b = typeof props.cost  === 'undefined' ? '90000':props.cost;
+          c = typeof props.batt  === 'undefined' ? '1000':props.batt;
+          d = typeof props.cam   === 'undefined' ? '12':props.cam;
+          e = typeof props.disp  === 'undefined' ? '1.0':props.disp;  
+          Search = typeof props.search === 'undefined' ? 'search': props.search;
+          response = await fetch("http://localhost:5000/"+a+"/"+b+"/"+c+"/"+d+"/"+e+"/"+Search);
+        }
+      }
+    } 
+    else{
+      if(isNaN(props.name) && typeof props.batt==='undefined' && typeof props.cam=='undefined' && typeof props.cost==='undefined' && typeof props.disp==='undefined' && typeof props.search==='undefined'){
+        response = await fetch("http://localhost:5000/"+props.name+"/search/" + props.sort);
+       }
+       else if(isNaN(props.name)){
+        name    = isNaN(props.name)?props.name:"complete";
+        price   = typeof props.cost ==='undefined' ? '90000':props.cost;
+        battery = typeof props.batt ==='undefined' ? '1000':props.batt;
+        camera  = typeof props.cam  ==='undefined' ? '12':props.cam;     
+        display = typeof props.disp ==='undefined' ? '1.0':props.disp;  
+         Search      = typeof props.search ==='undefined' ? 'search': props.search;
+         setLoading(false);
+         response = await fetch("http://localhost:5000/"+name+"/"+price+"/"+battery+"/"+camera+"/"+display+"/"+Search+"/"+props.sort);
+       }
+       else if(!isNaN(props.name)){
+         setLoading(false);
+         if(typeof props.cam=='undefined' && typeof props.disp==='undefined' && typeof props.batt==='undefined' && typeof props.search==='undefined')
+         response = await fetch("http://localhost:5000/"+(props.name)+"/"+(props.cost)+"/search/"+props.sort);
+         else {
+           setLoading(false);
+          a = isNaN(props.name)?props.name:"complete";
+          b = typeof props.cost  === 'undefined' ? '90000':props.cost;
+          c = typeof props.batt  === 'undefined' ? '1000':props.batt;
+          d = typeof props.cam   === 'undefined' ? '12':props.cam;
+          e = typeof props.disp  === 'undefined' ? '1.0':props.disp;  
+           Search = typeof props.search === 'undefined' ? 'search': props.search;
+           response = await fetch("http://localhost:5000/"+a+"/"+b+"/"+c+"/"+d+"/"+e+"/"+Search+"/"+props.sort);
+         }
+       }
     }
-    else if(!isNaN(props.name)){
-      setLoading(false);
-      if(typeof props.cam=='undefined' && typeof props.disp==='undefined' && typeof props.batt==='undefined' && typeof props.search==='undefined')
-      response = await fetch("http://localhost:5000/"+(props.name)+"/"+(props.cost)+"/search");
-    else {
-      setLoading(false);
-      var a = isNaN(props.name)?props.name:"complete";
-      var b = typeof props.cost    === 'undefined' ? '90000':props.cost;
-      var c = typeof props.batt    === 'undefined' ? '1000':props.batt;
-      var d = typeof props.cam     === 'undefined' ? '12':props.cam;
-      var e = typeof props.disp    === 'undefined' ? '1.0':props.disp;  
-      Search = typeof props.search === 'undefined' ? 'search': props.search;
-      response = await fetch("http://localhost:5000/"+a+"/"+b+"/"+c+"/"+d+"/"+e+"/"+Search);
-  }
-}
-    console.log(response);
-    const jsonData = await response.json();
+      console.log(response);
+      const jsonData = await response.json();
     setMobile(jsonData);
     setLoading(true); 
   }
@@ -81,7 +114,7 @@ function AddToCompare(heyMobile){
 useEffect(()=> {
   getMobile();  
   // eslint-disable-next-line react-hooks/exhaustive-deps
-},[props.name,props.cost,props.batt,props.cam,props.disp,props.search])
+},[props.name,props.cost,props.batt,props.cam,props.disp,props.search,props.sort])
 
 return (
 <>
@@ -115,7 +148,7 @@ return (
         <img id="MImage" className="text-center mx-auto w-10/12 " src={mobile.imagesrc}  alt="xoami mobile"/>  
         
         <div id="performance">
-          <h1 className="mt-10 font-bold p-3 text-center  h-48 box-border shadow-lg"><img className="inline" src="https://i.ibb.co/3skXMcx/performance-svg.png  " alt="performance-svg" border="0" /> Performance <hr/> <span className="font-normal pt-0">{mobile.performance}</span> </h1>
+          <h1 className="mt-10 font-bold p-3 text-center  h-48 box-border shadow-lg"><img className="inline" src="https://i.ibb.co/3skXMcx/performance-svg.png" alt="performance-svg" border="0" /> Performance <hr/> <span className="font-normal pt-0">{mobile.performance}</span> </h1>
         </div>
         
         <div id="display">

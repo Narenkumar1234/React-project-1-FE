@@ -13,7 +13,8 @@ return (
         <Route path="/" exact component={Home}></Route>
         <Route path="/getMobilePhone/:id" exact component={withRouter(Filter)}></Route>
         <Route path="/getMobilePhone/:id/:price" exact component={withRouter(Filter)}></Route>
-        <Route path="/getMobilePhone/:id/:price/:batt/:cam/:disp/:search" exact component ={withRouter(Filter)}></Route>
+        <Route path="/getMobilePhone/:id/:price/:batt/:cam/:disp/:search/" exact component ={withRouter(Filter)}></Route>
+        <Route path="/getMobilePhone/:id/:price/:batt/:cam/:disp/:search/:sorting" exact component ={withRouter(Filter)}></Route>
     </Switch>   
    </Router>
     </>
