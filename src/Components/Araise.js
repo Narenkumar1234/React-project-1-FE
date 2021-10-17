@@ -1,3 +1,4 @@
+import { keys } from "@material-ui/core/styles/createBreakpoints";
 import Popup from "reactjs-popup";
 function Araise(props){
 return (
@@ -17,7 +18,7 @@ return (
      </div>
      <div className="grid grid-cols-2 rows-span-4 text-center mx-auto"> 
        {console.log(props.list.length)}
-       {(props.list.length>=2)?(props.list.map(list=>
+       {(props.list.length>=2)?(props.list.map((list) =>
        <div>
       <h1 id="MName" className="lg:px-3 lg:py-3 font-semibold  text-sm text-center">{list.mobilename}</h1>
       <img className="mx-auto" src={list.imagesrc} width="100" height="100" alt={list.mobilename}/>

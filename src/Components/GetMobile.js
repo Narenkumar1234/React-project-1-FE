@@ -8,8 +8,7 @@ const makeLink = (str,name,store) =>{
   if(str==="null"){
     return "https://www.google.com/search?q="+name+" "+store;
   }
-  
-     var mySubString = str.substring(
+      var mySubString = str.substring(
       str.indexOf("=") + 1,
       str.indexOf("target=blank")
     );
@@ -23,37 +22,37 @@ const GetMobile = ( props ) => {
   const [loading,setLoading] = useState(false);
   const [compare,setCompare] = useState(false);
   var response;
-
+var Search;
 const getMobile = async () => {
   try{
-    if(isNaN(props.name) && typeof props.batt==='undefined' && typeof props.cam=='undefined' && typeof props.cost==='undefined' && typeof props.disp==='undefined'){
-      response = await fetch("http://localhost:5000/"+props.name);
+    if(isNaN(props.name) && typeof props.batt==='undefined' && typeof props.cam=='undefined' && typeof props.cost==='undefined' && typeof props.disp==='undefined' && typeof props.search==='undefined'){
+      response = await fetch("http://localhost:5000/"+props.name+"/search");
     }
     else if(isNaN(props.name)){
-      var name = isNaN(props.name)?props.name:"complete";
-      var price = typeof props.cost==='undefined' ? '90000':props.cost;
-      var battery = typeof props.batt==='undefined' ? '1000':props.batt;
-      var camera = typeof props.cam==='undefined' ? '12':props.cam;     
-      var display = typeof props.disp==='undefined'? '1.0':props.disp;  
-      response = await fetch("http://localhost:5000/"+name+"/"+price+"/"+battery+"/"+camera+"/"+display);
+      var name    = isNaN(props.name)?props.name:"complete";
+      var price   = typeof props.cost   ==='undefined'  ? '90000':props.cost;
+      var battery = typeof props.batt   ==='undefined'  ? '1000':props.batt;
+      var camera  = typeof props.cam    ==='undefined'  ? '12':props.cam;     
+      var display = typeof props.disp   ==='undefined'  ? '1.0':props.disp;  
+      Search      = typeof props.search ==='undefined'  ? 'search': props.search;
+      setLoading(false);
+        response = await fetch("http://localhost:5000/"+name+"/"+price+"/"+battery+"/"+camera+"/"+display+"/"+Search);
     }
     else if(!isNaN(props.name)){
-      if(typeof props.cam=='undefined' && typeof props.disp==='undefined' && typeof props.batt==='undefined')
-      response = await fetch("http://localhost:5000/"+(props.name)+"/"+(props.cost));
-      
+      setLoading(false);
+      if(typeof props.cam=='undefined' && typeof props.disp==='undefined' && typeof props.batt==='undefined' && typeof props.search==='undefined')
+      response = await fetch("http://localhost:5000/"+(props.name)+"/"+(props.cost)+"/search");
     else {
+      setLoading(false);
       var a = isNaN(props.name)?props.name:"complete";
-      var b = typeof props.cost==='undefined' ? '90000':props.cost;
-      var c = typeof props.batt==='undefined' ? '1000':props.batt;
-      var d = typeof props.cam==='undefined' ? '12':props.cam;
-      var e = typeof props.disp==='undefined'? '1.0':props.disp;  
-
-      response = await fetch("http://localhost:5000/"+a+"/"+b+"/"+c+"/"+d+"/"+e);
-    }
-
-    }
-    
-     
+      var b = typeof props.cost    === 'undefined' ? '90000':props.cost;
+      var c = typeof props.batt    === 'undefined' ? '1000':props.batt;
+      var d = typeof props.cam     === 'undefined' ? '12':props.cam;
+      var e = typeof props.disp    === 'undefined' ? '1.0':props.disp;  
+      Search = typeof props.search === 'undefined' ? 'search': props.search;
+      response = await fetch("http://localhost:5000/"+a+"/"+b+"/"+c+"/"+d+"/"+e+"/"+Search);
+  }
+}
     console.log(response);
     const jsonData = await response.json();
     setMobile(jsonData);
@@ -82,7 +81,7 @@ function AddToCompare(heyMobile){
 useEffect(()=> {
   getMobile();  
   // eslint-disable-next-line react-hooks/exhaustive-deps
-},[props.name,props.cost,compare,props.batt,props.cam,props.disp])
+},[props.name,props.cost,props.batt,props.cam,props.disp,props.search])
 
 return (
 <>
@@ -96,7 +95,15 @@ return (
   =&gt; Added ({Compare.length})</span></center>):(<div></div>)}
 {compare && compare!=='null' ? (<Araise list={Compare}/>):(<div></div>)}
 { loading ? (
-  mobile.map(mobile=>(
+  mobile.filter((mobile) => {
+      if(props.search === null || props.search === "undefined" || typeof props.search=== 'undefined'){
+      return mobile;
+      }
+      else if (mobile.mobilename.toLowerCase().includes((props.search).toLowerCase())){
+      return mobile;
+      }
+      
+    }).map(mobile=>(
 <div key={mobile.id} className=" lg:px-24 lg:py-7 ">
     <div  className="rounded-lg border-t-2  border-blue grid grid-rows-6 shadow-md  mx-1 ">
       <div className="row-span-1 grid grid-cols-5 ">
@@ -171,12 +178,9 @@ return (
           <a href="www.google.com" ><h1 className="lg:px-5 lg:py-2 font-bold inline-block text-xl"><img className="w-10 inline-block"  src="https://i.ibb.co/VjKn8y7/amazon.png"  alt="amazon" />Amazon</h1></a>
         </div>
       </div>
-      </div>
+    </div>
 </div>
 )}
-
-  </>
-  );
-  
-}
+</>
+)}
 export default GetMobile;

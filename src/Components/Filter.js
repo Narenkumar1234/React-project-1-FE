@@ -10,6 +10,7 @@ function Filter () {
   const [Battery,SetBattery] = useState(mobile.batt);
   const [Camera,SetCamera] = useState(mobile.cam);
   const [Display,SetDisplay] = useState(mobile.disp);
+  const Search = mobile.search;
 
   // filter button update
   const [Vivo,AddVivo] = useState(false);
@@ -45,8 +46,8 @@ function Filter () {
 
   
   useEffect(()=>{
-      <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} />
-  },[Mobile,Price,Battery,Camera,Display])
+      <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} search={Search} />
+  },[Mobile,Price,Battery,Camera,Display,Search])
  
   //Display 
   function clickDisplay(disp){
@@ -59,8 +60,7 @@ function Filter () {
       }, 3000)
     }
     else{
-      SetInch52(false);
-      
+      SetInch52(false);  
     }
     if(disp===5.5){
       SetInch55(true);
@@ -281,8 +281,8 @@ function clickMobile(name){
 
 
 return(<>
-<div className="grid grid-cols-12 overflow-none"> 
-<div className="mx-10 my-7 w-full p-2 h-full shadow-xl col-span-2 rounded-xl">
+<div className="lg:grid lg:grid-cols-12 overflow-hidden"> 
+<div className="mx-10 my-7 w-full p-2 h-full shadow-xl col-span-2 rounded-xl hidden lg:block">
 <div className="mb-2">
 <h1 className="mr-20 text-left font-bold text-2xl inline-block">Filters</h1>
 <img className="inline-block ml-12 " src="https://i.ibb.co/D5cPpW8/filter-removebg-preview.png" width="40" height="40" alt="filter" border="0"></img>
@@ -342,7 +342,7 @@ return(<>
 
 </div>
 <div className="col-span-10">
- <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display}/>
+ <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} search={Search}/>
 </div>
 </div>
 </>)
