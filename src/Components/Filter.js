@@ -1,6 +1,12 @@
 import React, { useState ,useEffect} from "react";
 import GetMobile from "./GetMobile"
 import { useParams } from "react-router";
+import {faFilter} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+
+const filterIcon =<FontAwesomeIcon  icon ={faFilter}/>
+const close = <FontAwesomeIcon icon={faTimesCircle}/>
 
 function Filter () {
   const  mobile  = useParams();
@@ -12,6 +18,9 @@ function Filter () {
   const [Display,SetDisplay] = useState(mobile.disp);
   const [Sort,SetSort] = useState(mobile.sorting);
   
+  const [Open,SetOpen] = useState(false);
+  const [FilterOpen, SetFilterOpen] = useState(false);
+
   const Search = mobile.search;
 
   // filter button update
@@ -53,6 +62,13 @@ function Filter () {
       <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} search={Search} sort={Sort}/>
   },[Mobile,Price,Battery,Camera,Display,Search,Sort])
  
+  //responsive open filter
+  function openFilter(){
+    SetFilterOpen(!FilterOpen)
+    SetOpen(!Open);
+  }
+
+
   //Sort
   function clickSort(order){
     SetSort(order);
@@ -306,27 +322,35 @@ function clickMobile(name){
 
 
 return(<>
-<div className="lg:grid lg:grid-cols-12 overflow-hidden"> 
-<div className="mx-10 my-7 w-full p-2 h-full shadow-xl col-span-2 rounded-xl hidden lg:block">
+
+<button 
+className="cursor-pointer hover:text-white text-xl w-full pt-4 pb-3 rounded bg-transparent text-center lg:hidden md:hidden hover:bg-blue transition duration-300"
+ type="button"
+ onClick={() => openFilter()}>
+<span>{ Open ? close : filterIcon} Use Filters</span>
+</button>
+
+<div className="lg:grid lg:grid-cols-12 overflow-hidden md:grid md:grid-cols-12"> 
+<div className={"mx-10 my-7 lg:w-full p-2 h-full shadow-xl lg:col-span-2 rounded-xl lg:block md:block md:col-span-6 " + (FilterOpen ? " " : " hidden")} >
 <div className="mb-2">
-<h1 className="mr-20 text-left font-bold text-2xl inline-block">Filters</h1>
+<h1 className="mr-20 text-left font-bold text-2xl inline-block ">Filters</h1>
 <img className="inline-block ml-12 " src="https://i.ibb.co/D5cPpW8/filter-removebg-preview.png" width="40" height="40" alt="filter" border="0"></img>
 </div>
 
 
-<h1 className="inline-block font-semibold text-lg">Brand List</h1>
+<h1 className="font-semibold text-lg lg:inline-block md:text-center">Brand List</h1>
 <button className={"ml-14  btn btn-xs btn-accent loading " +(LoadingBrand  ? "": "hidden")}>loading</button>
-<div className="text-left space-x-3 space-y-3 mt-3 mb-4"> 
+<div className="space-x-3 space-y-3 mt-3 "> 
 <button type="button" onClick={()=>clickMobile("Vivo")}  className={" ml-3 transition duration-500 ease-in-out hover:bg-vivo hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-vivo rounded shadow " +(Vivo ? " bg-vivo text-white" : " text-vivo")}>vivo </button>
 <button type="button" onClick={()=>clickMobile("Xiaomi")} className={" ml-3 transition duration-500 ease-in-out hover:bg-xiaomi hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-xiaomi rounded shadow " +(Xiaomi ? " bg-xiaomi text-white" : " text-xiaomi")}>Xiaomi</button>
 <button type="button" onClick={()=>clickMobile("Oppo")} className={" ml-3 transition duration-500 ease-in-out hover:bg-oppo hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-oppo rounded shadow " +(Oppo ? " bg-oppo text-white" : " text-oppo")}>oppo</button>
-<button type="button" onClick={()=>clickMobile("Poco")} className={"ml-3 transition duration-500 ease-in-out hover:bg-poco hover:text-black transform hover:-translate-y-1 hover:scale-110 font-semibold py-2 px-5 border border-poco rounded shadow " +(Poco ? " bg-poco text-black" : " text-poco")}>Poco</button>
-<button type="button" onClick={()=>clickMobile("Oneplus")} className={"ml-3 transition duration-500 ease-in-out hover:bg-oneplus hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-oneplus rounded shadow " +(Oneplus ? " bg-oneplus text-white" : " text-oneplus")}>oneplus</button>
-<button type="button" onClick={()=>clickMobile("Realme")} className={"ml-3 transition duration-500 ease-in-out hover:bg-realme hover:text-grey transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-realme rounded shadow " +(Realme ? " bg-realme text-grey" : " text-realme")}>Realme</button>
-<button type="button" onClick={()=>clickMobile("Samsung")} className={"ml-3 transition duration-500 ease-in-out hover:bg-samsung hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-samsung rounded shadow " +(Samsung ? " bg-samsung text-white" : " text-samsung")}>Samsung</button>
+<button type="button" onClick={()=>clickMobile("Poco")} className={" ml-3 transition duration-500 ease-in-out hover:bg-poco hover:text-black transform hover:-translate-y-1 hover:scale-110 font-semibold py-2 px-5 border border-poco rounded shadow " +(Poco ? " bg-poco text-black" : " text-poco")}>Poco</button>
+<button type="button" onClick={()=>clickMobile("Oneplus")} className={" ml-3 transition duration-500 ease-in-out hover:bg-oneplus hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-oneplus rounded shadow " +(Oneplus ? " bg-oneplus text-white" : " text-oneplus")}>oneplus</button>
+<button type="button" onClick={()=>clickMobile("Realme")} className={" ml-3 transition duration-500 ease-in-out hover:bg-realme hover:text-grey transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-realme rounded shadow " +(Realme ? " bg-realme text-grey" : " text-realme")}>Realme</button>
+<button type="button" onClick={()=>clickMobile("Samsung")} className={" ml-3 transition duration-500 ease-in-out hover:bg-samsung hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-samsung rounded shadow " +(Samsung ? " bg-samsung text-white" : " text-samsung")}>Samsung</button>
 </div>
 
-<h1 className="font-semibold text-lg mt-2 inline-block">Price List</h1>
+<h1 className="font-semibold text-lg mt-2 lg:inline-block md:text-center">Price List</h1>
 <button className={"ml-14  btn btn-xs btn-accent loading " +(Loading  ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-4 mb-4">
 <button type="button" onClick={()=>clickPrice(13000)} className={"hover:bg-litegreen hover:text-white transition duration-500 ease-in-out font-semibold py-2 px-5 border border-gray rounded shadow" +(Below13 ? " bg-litegreen text-white" : "text-black")}>Below ₹ 13000</button><br/>
@@ -335,7 +359,7 @@ return(<>
 </div>
 
 
-<h1 className="text-left font-semibold text-lg mt-10 inline-block">Battery</h1>
+<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block md:text-center">Battery</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingBattery  ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-4"> 
 <button type="button" onClick={()=>clickBattery(2000)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow"+(Above2000 ? " bg-litegreen text-white" : "text-black")}>Above 2000 mAH</button><br/>
@@ -343,7 +367,7 @@ return(<>
 <button type="button" onClick={()=>clickBattery(5000)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow"+(Above5000 ? " bg-litegreen text-white" : "text-black")}>Above 5000 mAH</button><br/>
 </div>
 
-<h1 className="text-left font-semibold text-lg mt-10 inline-block">Camera</h1>
+<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block md:text-center">Camera</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingCamera ? "": "hidden")}>loading</button>
 
 <div className="text-center space-y-3 mt-3"> 
@@ -352,7 +376,7 @@ return(<>
 <button type="button" onClick={()=>clickCamera(48)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow"+(Above48MP ? " bg-litegreen text-white" : "text-black")}>48MP and above</button><br/>
 </div>
 
-<h1 className="text-left font-semibold text-lg mt-10 inline-block">Screen</h1>
+<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block md:text-center">Screen</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingDisplay ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-3"> 
 <button type="button" onClick={()=>clickDisplay(5.2)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Inch52 ? " bg-litegreen text-white" : "text-black")}>5.2 inch and above</button><br/>
@@ -360,7 +384,7 @@ return(<>
 <button type="button" onClick={()=>clickDisplay(5.9)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Inch6 ? " bg-litegreen text-white" : "text-black")}>6 inch and above</button><br/>
 </div>
 
-<h1 className="text-left font-semibold text-lg mt-10 inline-block">Sort By</h1>
+<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block md:text-center">Sort By</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingSort ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-3"> 
 <button type="button" onClick={()=>clickSort("ASC")} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Asc ? " bg-litegreen text-white" : "text-black")}>Price Low to High</button><br/>
@@ -368,7 +392,7 @@ return(<>
 </div>
 
 </div>
-<div className="col-span-10">
+<div className="lg:col-span-10 md:col-span-6">
  <GetMobile name={Mobile} cost={Price} batt={Battery} cam={Camera} disp={Display} search={Search} sort={Sort}/>
 </div>
 </div>
