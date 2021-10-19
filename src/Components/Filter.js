@@ -333,12 +333,12 @@ className="cursor-pointer hover:text-white text-xl w-full pt-4 pb-3 rounded bg-t
 <div className="lg:grid lg:grid-cols-12 overflow-hidden md:grid md:grid-cols-12"> 
 <div className={"mx-10 my-7 lg:w-full p-2 h-full shadow-xl lg:col-span-2 rounded-xl lg:block md:block md:col-span-6 " + (FilterOpen ? " " : " hidden")} >
 <div className="mb-2">
-<h1 className="mr-20 text-left font-bold text-2xl inline-block ">Filters</h1>
-<img className="inline-block ml-12 " src="https://i.ibb.co/D5cPpW8/filter-removebg-preview.png" width="40" height="40" alt="filter" border="0"></img>
+<span className=" text-left font-bold text-2xl lg:inline-block hidden ">Filters <img className="lg:inline-block lg:ml-24" src="https://i.ibb.co/D5cPpW8/filter-removebg-preview.png" width="40" height="40" alt="filter" border="0"></img> </span>
+
 </div>
 
 
-<h1 className="font-semibold text-lg lg:inline-block md:text-center">Brand List</h1>
+<h1 className="font-semibold text-lg lg:inline-block text-center">Brand List</h1>
 <button className={"ml-14  btn btn-xs btn-accent loading " +(LoadingBrand  ? "": "hidden")}>loading</button>
 <div className="space-x-3 space-y-3 mt-3 "> 
 <button type="button" onClick={()=>clickMobile("Vivo")}  className={" ml-3 transition duration-500 ease-in-out hover:bg-vivo hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-vivo rounded shadow " +(Vivo ? " bg-vivo text-white" : " text-vivo")}>vivo </button>
@@ -350,7 +350,7 @@ className="cursor-pointer hover:text-white text-xl w-full pt-4 pb-3 rounded bg-t
 <button type="button" onClick={()=>clickMobile("Samsung")} className={" ml-3 transition duration-500 ease-in-out hover:bg-samsung hover:text-white transform hover:-translate-y-1 hover:scale-110  font-semibold py-2 px-5 border border-samsung rounded shadow " +(Samsung ? " bg-samsung text-white" : " text-samsung")}>Samsung</button>
 </div>
 
-<h1 className="font-semibold text-lg mt-2 lg:inline-block md:text-center">Price List</h1>
+<h1 className="font-semibold text-lg mt-2 lg:inline-block text-center">Price List</h1>
 <button className={"ml-14  btn btn-xs btn-accent loading " +(Loading  ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-4 mb-4">
 <button type="button" onClick={()=>clickPrice(13000)} className={"hover:bg-litegreen hover:text-white transition duration-500 ease-in-out font-semibold py-2 px-5 border border-gray rounded shadow" +(Below13 ? " bg-litegreen text-white" : "text-black")}>Below ₹ 13000</button><br/>
@@ -359,7 +359,7 @@ className="cursor-pointer hover:text-white text-xl w-full pt-4 pb-3 rounded bg-t
 </div>
 
 
-<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block md:text-center">Battery</h1>
+<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block text-center">Battery</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingBattery  ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-4"> 
 <button type="button" onClick={()=>clickBattery(2000)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow"+(Above2000 ? " bg-litegreen text-white" : "text-black")}>Above 2000 mAH</button><br/>
@@ -367,7 +367,7 @@ className="cursor-pointer hover:text-white text-xl w-full pt-4 pb-3 rounded bg-t
 <button type="button" onClick={()=>clickBattery(5000)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow"+(Above5000 ? " bg-litegreen text-white" : "text-black")}>Above 5000 mAH</button><br/>
 </div>
 
-<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block md:text-center">Camera</h1>
+<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block text-center">Camera</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingCamera ? "": "hidden")}>loading</button>
 
 <div className="text-center space-y-3 mt-3"> 
@@ -376,7 +376,7 @@ className="cursor-pointer hover:text-white text-xl w-full pt-4 pb-3 rounded bg-t
 <button type="button" onClick={()=>clickCamera(48)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow"+(Above48MP ? " bg-litegreen text-white" : "text-black")}>48MP and above</button><br/>
 </div>
 
-<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block md:text-center">Screen</h1>
+<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block text-center">Screen</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingDisplay ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-3"> 
 <button type="button" onClick={()=>clickDisplay(5.2)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Inch52 ? " bg-litegreen text-white" : "text-black")}>5.2 inch and above</button><br/>
@@ -384,7 +384,7 @@ className="cursor-pointer hover:text-white text-xl w-full pt-4 pb-3 rounded bg-t
 <button type="button" onClick={()=>clickDisplay(5.9)} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Inch6 ? " bg-litegreen text-white" : "text-black")}>6 inch and above</button><br/>
 </div>
 
-<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block md:text-center">Sort By</h1>
+<h1 className="text-left font-semibold text-lg mt-10 lg:inline-block text-center">Sort By</h1>
 <button className={"ml-16  btn btn-xs btn-accent loading " +(LoadingSort ? "": "hidden")}>loading</button>
 <div className="text-center space-y-3 mt-3"> 
 <button type="button" onClick={()=>clickSort("ASC")} className={"hover:bg-litegreen transition hover:text-white duration-500 ease-in-out font-semibold py-2 px-5 border border-grey rounded shadow "+(Asc ? " bg-litegreen text-white" : "text-black")}>Price Low to High</button><br/>

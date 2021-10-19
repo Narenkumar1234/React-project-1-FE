@@ -23,10 +23,10 @@ return (
       <img className="lg:inline-block hidden mx-auto " src={list.imagesrc} width="100" height="100" alt={list.mobilename}/>
       <h1 id="MPrice" className="lg:px-5 lg:py-2 font-semibold text-2xl text-green">₹{list.price}</h1>
       
-      <h1 className=" font-bold p-3 lg:text-base text-sm  h-40"><img className=" inline" src="https://i.ibb.co/3skXMcx/performance-svg.png  " alt="performance-svg" /> Performance <hr/> <span className="font-normal pt-0">{list.performance}</span></h1>
-      <h1 className=" font-bold p-3 lg:text-base text-sm  h-40"><img className=" inline" src="https://i.ibb.co/7Yqqysx/display-svg.png" alt="display-svg" /> Display <hr /> <span className="font-normal pt-0">{list.display}</span> </h1>
-      <h1 className=" font-bold p-3 lg:text-base text-sm  h-40"><img className=" inline" src="https://i.ibb.co/yyCK5LH/camera-svg.png" alt="battery-svg" /> Camera <hr />  <span className="font-normal pt-0"> {list.camera} </span> </h1>
-      <h1 className=" font-bold p-3 lg:text-base text-sm  h-30"> <img className=" inline" src="https://i.ibb.co/64wzrpV/battery-svg.png" alt="battery-svg" /> Battery <hr /> <span className="font-normal pt-0"> {list.battery} </span> </h1>
+      <h1 className=" font-bold p-3 lg:text-base text-sm  h-40 lg:h-28"><img className=" inline" src="https://i.ibb.co/3skXMcx/performance-svg.png  " alt="performance-svg" /> Performance <hr/> <span className="font-normal pt-0">{list.performance}</span></h1>
+      <h1 className=" font-bold p-3 lg:text-base text-sm  h-40 lg:h-28"><img className=" inline" src="https://i.ibb.co/7Yqqysx/display-svg.png" alt="display-svg" /> Display <hr /> <span className="font-normal pt-0">{list.display}</span> </h1>
+      <h1 className=" font-bold p-3 lg:text-base text-sm  h-40 lg:h-28"><img className=" inline" src="https://i.ibb.co/yyCK5LH/camera-svg.png" alt="battery-svg" /> Camera <hr />  <span className="font-normal pt-0"> {list.camera} </span> </h1>
+      <h1 className=" font-bold p-3 lg:text-base text-sm  h-30 lg:h-28"> <img className=" inline" src="https://i.ibb.co/64wzrpV/battery-svg.png" alt="battery-svg" /> Battery <hr /> <span className="font-normal pt-0"> {list.battery} </span> </h1>
        
       </div>
        
