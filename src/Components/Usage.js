@@ -1,31 +1,28 @@
 import React from "react";
+import {Link} from "react-router-dom"
 function Usage(){
  return (
      <>
-     <div className="text-center mx-auto lg:text-left lg:space-x-12">
-     <a href="https://google.com" id="Battery">
-        <img className="py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/PT7CqD4/Battery.png" width="85px" height="85px" alt="Battery"/>
-    </a>
-    <a href="https://google.com" id="Camera">
-        <img className="py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/84GShvX/Camera.png" width="85px" height="85px" alt="Camera"/>
-    </a>
-    <a href="https://google.com" id="Selfie">
-        <img className="py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/B25B0nF/Selfie.png" width="85px" height="85px" alt="Selfie"/>
-    </a>
-    
+<br/>
+<div className="grid grid-cols-2 lg:text-left text-center lg:mt-4">
+     <div className="lg:cols-span-1 lg:space-x-10 text-center ">
+        <Link to="/getMobilePhone/complete/90000/5000/12/1.0/undefined/ASC" id="Battery">
+        <img className="py-1 px-1.5 lg:w-4/12  inline-block" src="https://i.ibb.co/PT7CqD4/Battery.png"  alt="Battery"/>
+        </Link>
+
+        <Link to="/getMobilePhone/complete/90000/1000/48/1.0/undefined/ASC" id="Camera">
+            <img className="py-1 px-1.5 lg:w-4/12 inline-block" src="https://i.ibb.co/84GShvX/Camera.png"  alt="Camera"/>
+        </Link>
     </div>
-    <br/>
-    <div className="text-center mx-auto lg:text-left lg:space-x-12">
-    <a href="https://google.com" id="Gaming">
-        <img className="py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/YDDt3Wd/Gaming.png" width="85px" height="85px" alt="Gaming"/>
-    </a>
-    <a href="https://google.com" id="Budget">
-        <img className="py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/QKBvkBN/Budget.png" width="85px" height="85px" alt="Budget"/>
-    </a>
-    <a href="https://google.com" id="Budget">
-        <img className="py-1 px-1.5 lg:px-0 inline-block" src="https://i.ibb.co/5BT4xFN/All.png" width="85px" height="85px" alt="All"/>
-    </a>
-    </div>
+    <div className="lg:cols-span-1 lg:space-x-10 ">
+        <Link to="/getMobilePhone/complete/20000/1000/12/1.0/undefined/ASC" id="Budget">
+            <img className="py-1 px-1.5 lg:w-4/12 inline-block" src="https://i.ibb.co/QKBvkBN/Budget.png" alt="Budget"/>
+        </Link>
+        <Link to="/getMobilePhone/complete/90000/5000/48/5.0/undefined/ASC" id="all">
+            <img className="py-1 px-1.5 lg:w-4/12  inline-block" src="https://i.ibb.co/5BT4xFN/All.png"  alt="All"/>
+        </Link> 
+    </div>   
+</div>
     </>
  )
 }
